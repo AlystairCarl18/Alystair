@@ -1,0 +1,61 @@
+/*Line Following Robot Code*/
+
+/*-----------------------------------------------------------
+         Define pins for both of the photoresistors
+  -----------------------------------------------------------*/
+
+int Left,Right; //set data type for the photoresistors
+
+/*------------------------------------------------------------
+          Setting up pins to be input or output
+      It will be called once the program is starting
+--------------------------------------------------------------*/
+
+void setup()
+{                    //open curly bracket
+  pinMode(8,OUTPUT); //pin 8 is set as output for L293D to read
+  pinMode(9,OUTPUT); //pin 9 is set as output for L293D to read
+  pinMode(10,OUTPUT);//pin 10 is set as output for L293D to read
+  pinMode(11,OUTPUT);//pin 11 is set as output for L293D to read
+  pinMode(2,INPUT);  /*pin 2 is set as input to detect the line
+                       to follow*/
+  pinMode(3,INPUT);  /*pin 3 is set as input to detect the line
+                       to follow*/
+}                    //close curly bracket
+
+
+void loop()
+{
+  Right=digitalRead(2); //read if photoresistor detects a line
+  Left=digitalRead(3);  //read if photoresistor detects a line
+  if(Right==HIGH && Left==HIGH)
+  {
+    digitalWrite(8,HIGH); 
+    digitalWrite(9,LOW);
+    digitalWrite(10,HIGH);
+    digitalWrite(11,LOW);
+  }
+  else if(Right==HIGH && Left==LOW)
+  {
+    digitalWrite(8,HIGH);
+    digitalWrite(9,LOW);
+    digitalWrite(10,HIGH);
+    digitalWrite(11,HIGH);
+  }
+  else if(Right==LOW && Left==HIGH)
+  {
+    digitalWrite(8,HIGH);
+    digitalWrite(9,HIGH);
+    digitalWrite(10,HIGH);
+    digitalWrite(11,LOW);
+   }
+  else if(Right==LOW && Left==LOW)
+  {
+    digitalWrite(8,HIGH);
+    digitalWrite(9,HIGH);
+    digitalWrite(10,HIGH);
+    digitalWrite(11,HIGH);
+  }
+    
+ delay(100);
+}
